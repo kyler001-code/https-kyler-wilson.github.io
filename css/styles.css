@@ -379,13 +379,13 @@ h1::after {
   border-color: var(--blanco);
 }
 
-.proyecto h3 {
+.proyecto h2 {
   font-size: 20px;
   line-height: 1.3;
   margin-bottom: 10px;
 }
 
-.proyecto h3::before {
+.proyecto h2::before {
   content: "./";
   color: var(--gris-texto);
 }
@@ -502,21 +502,59 @@ h1::after {
     flex-direction: column;
   }
 
+  /* Cabecera compacta: foto pequeña al lado del nombre y menú en filas cortas */
   .sidebar {
     width: 100%;
     height: auto;
     position: static;
     border-right: none;
     border-bottom: 1px solid var(--gris-borde);
-    padding: 28px 20px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .perfil {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .foto {
+    width: 56px;
+    height: 56px;
+  }
+
+  .perfil-nombre {
+    font-size: 18px;
+  }
+
+  .perfil-rol {
+    font-size: 13px;
+  }
+
+  .menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .menu a {
+    min-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    border: 1px solid var(--gris-borde);
   }
 
   .sidebar-pie {
     display: none;
   }
 
+  .contenido {
+    padding: 28px 16px;
+  }
+
   .contenido-interior {
-    gap: 64px;
+    gap: 40px;
   }
 }
 
@@ -565,4 +603,80 @@ h1::after {
 h1.tipeando::after,
 .titulo-pagina.tipeando::after {
   visibility: hidden;
+}
+
+
+/* ---------- Barras de nivel tipo terminal (habilidades) ---------- */
+
+.habilidad {
+  margin-top: 14px;
+}
+
+.hab-cabecera {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.hab-nombre {
+  color: var(--blanco);
+}
+
+.hab-nivel {
+  color: var(--gris-texto);
+  white-space: nowrap;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gris-texto);
+}
+
+.barra::before { content: "["; }
+.barra::after  { content: "]"; }
+
+/* 20 bloques, como una barra de carga de consola */
+.barra-pista {
+  position: relative;
+  flex: 1;
+  height: 14px;
+  background-image: linear-gradient(90deg, var(--gris-borde) calc(100% - 3px), transparent calc(100% - 3px));
+  background-size: 5% 100%;
+}
+
+.barra-relleno {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, var(--blanco) calc(100% - 3px), transparent calc(100% - 3px));
+  background-size: 5% 100%;
+  clip-path: inset(0 calc(100% - var(--p) * 1%) 0 0);
+  transition: clip-path 1.2s steps(20);
+}
+
+/* js/barras.js pone esta clase un instante para volver a "cargar" la barra */
+.barra-relleno.reiniciando {
+  clip-path: inset(0 100% 0 0);
+  transition: none;
+}
+
+.habilidad {
+  cursor: pointer;
+}
+
+.habilidad:hover .hab-nivel,
+.habilidad:focus-visible .hab-nivel {
+  color: var(--blanco);
+}
+
+.habilidad:focus-visible {
+  outline: 2px dashed var(--blanco);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barra-relleno { transition: none; }
 }

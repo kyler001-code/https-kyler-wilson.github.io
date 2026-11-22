@@ -1,0 +1,2 @@
+Pon aqui tu CV en PDF con este nombre exacto: CV-Kyler-Wilson.pdf
+Si lo llamas distinto, cambia el enlace en index.html y contacto.html.
