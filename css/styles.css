@@ -680,3 +680,19 @@ h1.tipeando::after,
 @media (prefers-reduced-motion: reduce) {
   .barra-relleno { transition: none; }
 }
+
+
+/* Enlace de "prueba" bajo una habilidad (apunta al proyecto que la demuestra) */
+.hab-prueba {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--gris-texto);
+}
+
+.hab-prueba a {
+  color: var(--blanco);
+}
+
+.lista-proyectos + .pendiente {
+  margin-top: 20px;
+}
